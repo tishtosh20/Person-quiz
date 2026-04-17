@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container-result">
+    <h1>Your result is...</h1>
+    <h1 id="resultTitle"></h1>
+    <p id="resultDesc"></p>
+    <img id="resultImg" alt="Result image">
+    <button id="restartBtn">Take Quiz Again</button>
+  </div>
+
+  <script>
+    let result = localStorage.getItem("quizResult");
+    let desc = localStorage.getItem("quizDesc");
+    let img = localStorage.getItem("quizImg");
+
+    document.getElementById("resultTitle").textContent = result || "";
+    document.getElementById("resultDesc").textContent = desc || "";
+
+    if (img) {
+      document.getElementById("resultImg").src = img;
+    }
+
+    if (!result || !desc) {
+      document.getElementById("resultTitle").textContent = "Something went wrong";
+      document.getElementById("resultDesc").textContent = "Try taking the quiz again.";
+    }
+
+    document.getElementById("restartBtn").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
